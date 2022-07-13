@@ -2,6 +2,21 @@ from antagonistfinder import AntagonistFinder
 from abc import ABC, abstractmethod
 
 
+class Gun:
+    def fire_a_gun(self):
+        print('PIU PIU')
+
+
+class Lasers:
+    def incinerate_with_lasers(self):
+        print('Wzzzuuuup!')
+
+
+class Kick:
+    def roundhouse_kick(self):
+        print('Bump')
+
+
 class SuperHero(ABC):
 
     def __init__(self, name, can_use_ultimate_attack=True):
@@ -12,24 +27,14 @@ class SuperHero(ABC):
     def find(self, place):
         self.finder.get_antagonist(place)
 
-    @abstractmethod
     def ultimate(self):
         pass
 
     def attack(self):
-        self.fire_a_gun()
-
-    def fire_a_gun(self):
-        print('PIU PIU')
-
-    def incinerate_with_lasers(self):
-        print('Wzzzuuuup!')
-
-    def roundhouse_kick(self):
-        print('Bump')
+        pass
 
 
-class Superman(SuperHero):
+class Superman(SuperHero, Lasers):
 
     def __init__(self):
         super(Superman, self).__init__('Clark Kent', True)
@@ -38,7 +43,7 @@ class Superman(SuperHero):
         self.incinerate_with_lasers()
 
 
-class ChackNorris(SuperHero):
+class ChackNorris(SuperHero, Kick):
 
     def __init__(self):
         super(ChackNorris, self).__init__('Chack Norris', True)
