@@ -44,6 +44,7 @@ class UserService(ServiceMixin):
 
     def create_jwt(self, user):
         now = datetime.utcnow().timestamp()
+        refresh_token_id = str(uuid.uuid4())
         access_jwt = jwt.encode(
             {
                 "username": user.username,
@@ -51,6 +52,7 @@ class UserService(ServiceMixin):
                 "nbf": now,
                 "exp": now + JWT_ACCESS_EXP_SECONDS,
                 "jti": str(uuid.uuid4()),
+                "refresh_token_jti": refresh_token_id,
                 "sub": user.id,
             },
             JWT_SECRET_KEY,
@@ -76,9 +78,14 @@ class UserService(ServiceMixin):
 
     def create_user(self, user: Signup):
         """Создать пользователя."""
+        exist = self.session.query(User).filter(
+            User.username == user.username
+        )
+        if exist:
+            raise ValueError
         new_user = User(
-            username=user.username,
             email=user.email,
+            username=user.username,
             password_hash=pbkdf2_sha256.hash(user.password)
         )
         self.session.add(new_user)
