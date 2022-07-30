@@ -1,5 +1,6 @@
 # Homeworks
-Ответы на задания курса Y_LAB (backend python developer)
+Ответы на задания курса Y_LAB (backend python developer).
+
 Домашние задания находятся в папках по неделям (описания задач также закомментированы).
 
 # HW1
