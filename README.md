@@ -50,6 +50,9 @@ border_sleep_time - граничное время ожидания.
 # HW4
 Надо написать логику авторизаций пользователей на основе JWT-токенов. К существующему проекту: 
 https://github.com/BernarBerdikul/ylab_hw/tree/main/webinar_num_3.
+
 ● В качестве SQL DB: использовать Postgres.
+
 ● В качестве NoSQL DB: использовать Redis.
+
 ● В качестве Фреймворка: использовать FastAPI.
